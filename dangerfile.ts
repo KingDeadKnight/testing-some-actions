@@ -8,7 +8,7 @@ import {
 
 
 
-function formatMarkdownTable(title: string, icon: string, content: string)
+function formatMarkdownTable(title, icon, content)
 {
     const tableTemplate = `
     |   |{0}|
