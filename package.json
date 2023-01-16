@@ -1,4 +1,7 @@
 {
+  "name": "testing-github-actions",
+  "version": "1.0.0",
+  "license": "ISC",
   "dependencies": {
     "danger": "^11.2.1"
   }
