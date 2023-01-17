@@ -21,18 +21,20 @@ function formatMarkdownTable(title, icon, content)
     return result;
 }
 
+markdown('### Ceci est un test')
+
 if (danger.git.created_files.length > 0) {
     markdown(formatMarkdownTable('Added Files in this PR', ':green_book:', `<ul><li>${danger.git.created_files.join("</li><li>")}</li></ul>`));
     //message(`Added Files in this PR:<ul><li>${danger.git.created_files.join("</li><li>")}</li>`);
 }
 
 if (danger.git.deleted_files.length > 0) {
-    markdown(formatMarkdownTable('Added Files in this PR', ':red_book:', `<ul><li>${danger.git.deleted_files.join("</li><li>")}</li></ul>`));
+    markdown(formatMarkdownTable('Deleted Files in this PR', ':red_book:', `<ul><li>${danger.git.deleted_files.join("</li><li>")}</li></ul>`));
     //message(`Deleted Files in this PR:<ul><li>${danger.git.deleted_files.join("</li><li>")}</li>`);
 }
 
 if (danger.git.modified_files.length > 0) {
-    markdown(formatMarkdownTable('Added Files in this PR', ':orange_book:', `<ul><li>${danger.git.modified_files.join("</li><li>")}</li></ul>`));
+    markdown(formatMarkdownTable('Modified Files in this PR', ':orange_book:', `<ul><li>${danger.git.modified_files.join("</li><li>")}</li></ul>`));
     //message(`Changed Files in this PR:<ul><li>${danger.git.modified_files.join("</li><li>")}</li>`);
 }
 
