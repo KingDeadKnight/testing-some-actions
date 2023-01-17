@@ -16,8 +16,8 @@ function formatMarkdownTable(title, icon, content)
     |{1}|{2}|
     `
     let result = tableTemplate.replace('{0}', title);
-    result = tableTemplate.replace('{1}', icon);
-    result = tableTemplate.replace('{2}', content);
+    result = result.replace('{1}', icon);
+    result = result.replace('{2}', content);
     return result;
 }
 
