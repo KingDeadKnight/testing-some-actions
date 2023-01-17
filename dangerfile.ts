@@ -35,24 +35,29 @@ if (danger.git.modified_files.length > 0) {
     //message(`Changed Files in this PR:<ul><li>${danger.git.modified_files.join("</li><li>")}</li>`);
 }
 
+let hasFailed = false;
 
 if (danger.github.pr.head.ref.trim().replace(/-/g, ' ').toLowerCase() === danger.github.pr.title.trim().toLowerCase())
 {
+    hasFailed = true;
     fail("Title must be explicit as it will be used in your release change log.")
 }
 
 if (!danger.github.pr.assignee)
 {
+    hasFailed = true;
     fail("This pull request needs an assignee, and optionally include any reviewers.")
 }
 
 if (danger.github.issue.labels.length <=0)
 {
+    hasFailed = true;
     fail("This pull request needs a label.")
 }
 
 if (danger.github.pr.body.length < 10)
 {
+    hasFailed = true;
     fail("This pull request needs a description.")
 }
 
@@ -61,4 +66,15 @@ const hasLockfileChanges = danger.git.modified_files.includes("yarn.lock")
 if (hasPackageChanges && !hasLockfileChanges)
 {
     warn("There are package.json changes with no corresponding lockfile changes")
+}
+
+if (hasFailed)
+{
+    danger.github.api.pulls.createReview({
+        owner: danger.github.thisPR.owner,
+        pull_number: danger.github.thisPR.number,
+        repo: danger.github.thisPR.repo,
+        event: 'REQUEST_CHANGES',
+        body: 'Danger has failed, please make changes'
+    })
 }
