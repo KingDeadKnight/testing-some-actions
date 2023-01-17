@@ -11,9 +11,9 @@ import {
 function formatMarkdownTable(title, icon, content)
 {
     const tableTemplate = `
-    |   |{0}|
-    |---|---|
-    |{1}|{2}|
+    |     | {0} |
+    | --- | --- |
+    | {1} | {2} |
     `
     let result = tableTemplate.replace('{0}', title);
     result = result.replace('{1}', icon);
