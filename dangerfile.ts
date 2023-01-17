@@ -10,21 +10,15 @@ import {
 
 function formatMarkdownTable(title, icon, content)
 {
-    const tableTemplate = `|     | {0} |
-    | --- | --- |
-    | {1} | {2} |
-    `
+    const tableTemplate = `| | {0} |
+| --- | --- |
+| {1} | {2} |`
+
     let result = tableTemplate.replace('{0}', title);
     result = result.replace('{1}', icon);
     result = result.replace('{2}', content);
     return result;
 }
-
-markdown(`| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-`)
 
 if (danger.git.created_files.length > 0) {
     markdown(formatMarkdownTable('Added Files in this PR', ':green_book:', `<ul><li>${danger.git.created_files.join("</li><li>")}</li></ul>`));
