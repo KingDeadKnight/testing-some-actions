@@ -79,10 +79,21 @@ if (hasFailed)
     })
 }
 else {
-    danger.github.api.pulls.removeRequestedReviewers({
+    danger.github.api.pulls.createReview({
         owner: danger.github.thisPR.owner,
         pull_number: danger.github.thisPR.number,
         repo: danger.github.thisPR.repo,
-        reviewers: ['github-actions']
+        event: 'APPROVE',
+        body: 'Danger is ok, first pull request validation done !'
     })
+    /*const allReviewsResponse = await danger.github.api.pulls.listReviews({
+        owner: danger.github.thisPR.owner,
+        pull_number: danger.github.thisPR.number,
+        repo: danger.github.thisPR.repo,
+    })
+    const allActionReviews = allReviewsResponse.data.filter(r => r.user?.login === 'github-actions');
+    for (let action of allActionReviews)
+    {
+        danger.github.api.pulls.updateReview
+    }*/
 }
