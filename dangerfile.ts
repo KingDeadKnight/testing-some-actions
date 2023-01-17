@@ -10,9 +10,7 @@ import {
 
 function formatMarkdownTable(title, icon, content)
 {
-    const tableTemplate = `
-
-    |     | {0} |
+    const tableTemplate = `|     | {0} |
     | --- | --- |
     | {1} | {2} |
     `
@@ -22,7 +20,11 @@ function formatMarkdownTable(title, icon, content)
     return result;
 }
 
-markdown('### <ul><li>Test 1</li><li>Test 2</li></ul>')
+markdown(`| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+`)
 
 if (danger.git.created_files.length > 0) {
     markdown(formatMarkdownTable('Added Files in this PR', ':green_book:', `<ul><li>${danger.git.created_files.join("</li><li>")}</li></ul>`));
