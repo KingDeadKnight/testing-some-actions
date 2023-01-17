@@ -78,3 +78,11 @@ if (hasFailed)
         body: 'Danger has failed, please make changes'
     })
 }
+else {
+    danger.github.api.pulls.removeRequestedReviewers({
+        owner: danger.github.thisPR.owner,
+        pull_number: danger.github.thisPR.number,
+        repo: danger.github.thisPR.repo,
+        reviewers: ['github-actions']
+    })
+}
