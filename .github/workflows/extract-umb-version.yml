@@ -1,4 +1,4 @@
-﻿name: 'Pull request pre-conditions check'
+﻿name: 'Extract Umbraco version'
 
 on:
   push:
@@ -22,5 +22,8 @@ jobs:
         with:
           xml-file: 'Test.csproj'
           xpath: "string(//PackageReference[@Include='Umbraco.Cms']/@Version)"
-      - name: Echo version
-        run: echo ${{ steps.getversion.outputs.info }}
+      - uses: release-drafter/release-drafter@v5
+        header: Umbraco Version ${{ steps.getversion.outputs.info }}
+        footer: Umbraco Version ${{ steps.getversion.outputs.info }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
