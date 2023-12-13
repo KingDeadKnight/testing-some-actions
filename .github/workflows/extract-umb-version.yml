@@ -26,10 +26,11 @@ jobs:
         with:
           header: |
             ## Dependencies
-
-            ### Umbraco Version 12.1.1
-
-
-          footer: '### Umbraco Version ${{ steps.getversion.outputs.info }}'
+            
+            ### Umbraco Version ${{ steps.getversion.outputs.info }}\
+          footer: |
+            ## Dependencies
+            
+            ### Umbraco Version ${{ steps.getversion.outputs.info }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
