@@ -28,7 +28,7 @@ jobs:
             ## Dependencies
             
             ### Umbraco Version ${{ steps.getversion.outputs.info }}
-            &nbsp;
+            \
           footer: '### Umbraco Version ${{ steps.getversion.outputs.info }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
