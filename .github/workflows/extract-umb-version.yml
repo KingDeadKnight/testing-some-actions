@@ -23,7 +23,8 @@ jobs:
           xml-file: 'Test.csproj'
           xpath: "string(//PackageReference[@Include='Umbraco.Cms']/@Version)"
       - uses: release-drafter/release-drafter@v5
-        header: Umbraco Version ${{ steps.getversion.outputs.info }}
-        footer: Umbraco Version ${{ steps.getversion.outputs.info }}
+        with:
+          header: Umbraco Version ${{ steps.getversion.outputs.info }}
+          footer: Umbraco Version ${{ steps.getversion.outputs.info }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
