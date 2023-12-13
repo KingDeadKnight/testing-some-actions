@@ -1,0 +1,26 @@
+﻿name: 'Pull request pre-conditions check'
+
+on:
+  push:
+    branches:
+      - 'feature/extract-umb-version'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  extractVersion:
+    runs-on: ubuntu-latest
+    name: 'Extract Umbraco Version'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Get Version
+        id: getversion
+        uses: m-ringler/get-xpath@v3
+        with:
+          xml-file: 'Test.csproj'
+          xpath: "string(//PackageReference[@Include='Umbraco.Cms']/@Version)"
+      - name: Echo version
+        run: echo ${{ steps.getversion.outputs.info }}
