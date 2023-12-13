@@ -25,8 +25,10 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         with:
           header: |
-            ## Umbraco Version ${{ steps.getversion.outputs.info }}
-
+            ## Dependencies
+            
+            ### Umbraco Version ${{ steps.getversion.outputs.info }}
+            cc
           footer: '### Umbraco Version ${{ steps.getversion.outputs.info }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
