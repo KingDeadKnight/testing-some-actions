@@ -27,7 +27,7 @@ jobs:
           header: |
             ## Dependencies
             
-            ### Umbraco Version ${{ steps.getversion.outputs.info }}\
+            ### Umbraco Version ${{ steps.getversion.outputs.info }}
           footer: |
             ## Dependencies
             
