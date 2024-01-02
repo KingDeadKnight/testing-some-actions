@@ -1,0 +1,28 @@
+name: 'Pull request pre-conditions check'
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened, labeled, unlabeled, assigned, unassigned ]
+    branches:
+      - 'main'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prPreConditions:
+    runs-on: ubuntu-latest
+    name: 'Check Pull Request pre-conditions'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: 'Install NPM packages'
+        run: 'yarn install --frozen-lockfile'
+      - name: Validation
+        run: yarn danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
